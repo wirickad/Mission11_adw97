@@ -1,0 +1,27 @@
+﻿@model Books
+<div class="card card-outline-primary m-1 p-1">
+
+    <div class="bg-light p-1">
+        <h4>@Model.Title</h4>
+
+        <span class="badge bg-info" style="float:right">
+            ISBN: @Model.Isbn
+        </span>
+    </div>
+    <!--This was my second bootstrap discovery, you can create a ul without bullet points by using the list-inline class-->
+    <ul class="list-inline">
+        <li>Author: @Model.Author</li>
+        <li>Category: @Model.Category</li>
+        <li>Publisher: @Model.Publisher</li>
+        <li>Price: $@Model.Price</li>
+    </ul>
+
+    <form method="post" asp-page="/Purchase">
+        <input type="hidden" asp-for="@Model.BookId" />
+        <input type="hidden" name="returnURL" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+        <span class="card-text">
+            <button type="submit" class="btn btn-success btn-sm float-end">Purchase</button>
+        </span>
+    </form>
+
+</div>
